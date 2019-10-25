@@ -58,7 +58,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
-    //This function is called as soon as you click and its loading up the details screen
+    //Navigation This function is called as soon as you click and its loading up the details screen
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         // Find the selected movie
@@ -72,6 +72,4 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         // Deselect row after clicked
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
-
 }
