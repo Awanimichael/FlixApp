@@ -32,25 +32,27 @@ class MovieDetailsViewController: UIViewController {
         
         posterView.af_setImage(withURL: posterUrl!)
         
-        
         let backdropPath = movie["backdrop_path"] as! String
         let backdropUrl = URL(string: "https://image.tmdb.org/t/p/w780" + backdropPath)
-        
         backdropView.af_setImage(withURL: backdropUrl!)
         
-
-        // Do any additional setup after loading the view.
+        
     }
     
-
-    /*
-    // MARK: - Navigation
+    @IBAction func playVideo(_ sender: UITapGestureRecognizer) {
+        //Add code to run when posterview is clicked
+        performSegue(withIdentifier: "presentMovieVideo", sender: nil)
+        
+    }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "presentMovieVideo" {
+            let movieVideoViewController = segue.destination as! MovieVideoViewController
+            movieVideoViewController.movie = movie
+        }
+
     }
-    */
+    
 
 }
