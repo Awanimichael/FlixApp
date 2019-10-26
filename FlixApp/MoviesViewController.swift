@@ -23,9 +23,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
            } else if let data = data {
               let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
 
-            //Store result from dataDictionary in movies( List of dictionaries )
-            self.movies = dataDictionary["results"] as! [[String:Any]]
-            self.tableView.reloadData()
+              //Store result from dataDictionary in movies( List of dictionaries )
+              self.movies = dataDictionary["results"] as! [[String:Any]]
+              self.tableView.reloadData()
             
 
            }
@@ -58,6 +58,18 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
-
-
+    //Navigation This function is called as soon as you click and its loading up the details screen
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Find the selected movie
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)!
+        let movie = movies[indexPath.row]
+        
+        // Pass the selected movie to the moviesdetails view controller
+        let detailsViewController = segue.destination as! MovieDetailsViewController
+        detailsViewController.movie = movie
+        // Deselect row after clicked
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
